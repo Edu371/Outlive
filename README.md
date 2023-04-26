@@ -1,6 +1,6 @@
 # Outlive
-EN: Extraction and Modding of Outlive (2001) @ Continuum Entertainment  
-PT: Extração e Modificação de Outlive (2001) @ Continuum Entertainment  
+EN: Extraction and Modding of Outlive (2000) @ Continuum Entertainment  
+PT: Extração e Modificação de Outlive (2000) @ Continuum Entertainment  
 
 More Info In [WIKI][1]  
 Mais Informação em [WIKI][1]  
