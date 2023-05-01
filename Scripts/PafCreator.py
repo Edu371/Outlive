@@ -42,7 +42,7 @@ else:
     unknown1 = 600000
     tipo = 8
 
-# utilize no minimo 30 frames (Use at least 30 frames)
+# utilize no minimo 45 frames (Use at least 45 frames)
 frame_count = len(images)
 # frame_count = 300
 # width = 640
