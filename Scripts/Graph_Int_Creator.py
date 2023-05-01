@@ -8,7 +8,8 @@ from os.path import isfile
 import numpy as np
 from PIL import Image
 
-file_name = 'Outlive.dat'
+# file_name = 'Outlive.dat'
+file_name = input('Outlive.dat(Path): ')
 
 file = open(file_name, 'rb')
 file = file.read()
