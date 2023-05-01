@@ -8,7 +8,8 @@ import os
 from os import listdir
 from os.path import isfile
 
-file_name = 'Outlive.dat'
+# file_name = 'Outlive.dat'
+file_name = input('Outlive.dat(Path): ')
 
 file = open(file_name, 'rb')
 file = file.read()
