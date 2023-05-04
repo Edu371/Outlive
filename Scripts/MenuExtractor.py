@@ -20,18 +20,9 @@ images = []
 
 def read_image(image_offset):
     data = file[image_offset:image_offset + size]
-    image = []
-    for n in range(0, len(data), 2):
-        byte1 = bin(data[n])[2:].zfill(8)
-        byte2 = bin(data[n+1])[2:].zfill(8)
-
-        bit16 = (byte2 + byte1)
-        
-        r = round(int(bit16[:5], 2) * 8.225)
-        g = round(int(bit16[5:11], 2) * 4.05)
-        b = round(int(bit16[11:], 2) * 8.225)
-
-        image.append([r, g, b])
+    a = np.frombuffer(data, dtype='<u2')
+    b = np.divmod((a), 2048)
+    image = np.rint(np.vstack((b[0], np.divmod(b[1], 32))).T * np.array([[8.225, 4.05, 8.225]]))
 
     i = np.asarray(image).reshape((height, width, 3)).astype(np.uint8)
     images.append(Image.fromarray(i))
