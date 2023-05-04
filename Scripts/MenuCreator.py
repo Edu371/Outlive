@@ -33,18 +33,10 @@ for a in files:
 
 def convert_image(image_index, image_offset):
     global new_file
-    image = Image.open(images[image_index]).getdata()
-    data = b''
-    for pixel in image:
-        r = bin(round(pixel[0] / 8.225))[2:].zfill(5)
-        g = bin(round(pixel[1] / 4.05))[2:].zfill(6)
-        b = bin(round(pixel[2] / 8.225))[2:].zfill(5)
-
-        bit16 = (r + g + b)
-
-        byte1 = int(bit16[8:], 2).to_bytes(1, 'little')
-        byte2 = int(bit16[:8], 2).to_bytes(1, 'little')
-        data += byte1+byte2
+    image = np.asarray(Image.open(images[image_index]).getdata())[:,:3]
+    data = np.sum(np.rint(image / np.array([8.225, 4.05, 8.225])
+                          ).astype(int) * np.array([2048, 32, 1]), axis=1
+                  ).astype('<u2').tobytes()
 
     new_file = new_file[:image_offset] + data + new_file[image_offset + size:]
 
