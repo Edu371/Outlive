@@ -52,5 +52,5 @@ for section in sections:
         offset += 20
         read_image(offset, width, height, f'{name}/{str(x).zfill(2)}')
         offset += width * height * 2
-        
+
 print('Finished (Terminado)')
