@@ -13,12 +13,14 @@ file = file.read()
 
 file = file[113614179:113622304]
 
-offset = 21
+offset = 12
+colors_count = int.from_bytes(file[:4] ,'little')
 text_count = int.from_bytes(file[4:8] ,'little')
-header = 21 + text_count * 15
-colors = [hex(int.from_bytes(file[12:15] ,'big'))[2:].zfill(6),
-          hex(int.from_bytes(file[15:18] ,'big'))[2:].zfill(6),
-          hex(int.from_bytes(file[18:21] ,'big'))[2:].zfill(6)]
+header = 12 + colors_count * 3 + text_count * 15
+colors = []
+for _ in range(colors_count):
+    colors.append(hex(int.from_bytes(file[offset:offset+3] ,'big'))[2:].zfill(6))
+    offset += 3
 
 class ScrollableFrame:
     def __init__(self):
